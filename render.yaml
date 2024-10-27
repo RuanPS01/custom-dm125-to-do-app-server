@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: to-do-app-server
+    env: docker
+    buildCommand:  docker build -t posinatel/todoappserver .
+    startCommand: docker run -p 8080:8080 -t posinatel/todoappserver

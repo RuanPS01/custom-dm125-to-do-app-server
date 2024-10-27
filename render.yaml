@@ -1,12 +1,15 @@
 services:
   - type: web
     name: to-do-app-server
-    env: docker
+    env: java
     plan: free
-    buildCommand: docker build -t to-do-app-server .
-    startCommand: java -jar /app/app.jar
+    buildCommand: java -version  # Apenas para verificar se o Java está instalado
+    startCommand: java -jar bin/*.jar
     envVars:
       - key: PORT
         value: "8080"
       - key: JAVA_OPTS
         value: "-Xmx512m -Xms256m"
+    disk:
+      name: tmp
+      mountPath: /tmp

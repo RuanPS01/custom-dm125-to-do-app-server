@@ -1,4 +1,11 @@
 FROM mcr.microsoft.com/openjdk/jdk:17-distroless
-ARG JAR_FILE=bin/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+WORKDIR /app
+
+COPY bin/*.jar app.jar
+
+ENV PORT=8080
+EXPOSE ${PORT}
+
+ENV JAVA_OPTS="-Xmx512m -Xms256m"
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
